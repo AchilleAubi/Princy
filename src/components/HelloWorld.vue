@@ -224,6 +224,12 @@ function setPage(pageNumber: number) {
           </div>
         </div>
       </div>
+      <input
+        type="text"
+        v-model="searchKey"
+        placeholder="Rechercher"
+        class="form-control"
+      />
       <div class="flex w-full">
         <div style="margin-top: 5%">
           <div
