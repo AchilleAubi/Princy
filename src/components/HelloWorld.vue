@@ -434,6 +434,45 @@ function setPage(pageNumber: number) {
           >
         </div>
       </div>
+
+      <div
+        class="w-full max-w-sm bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4"
+      >
+        <div class="flex justify-end px-4 pt-4 p-4">
+          <button
+            id="dropdownButton"
+            data-dropdown-toggle="dropdown"
+            class="inline-block text-gray-100 bg-gray-100 hover:bg-gray-100"
+            type="button"
+          >
+            <span class="sr-only">Open dropdown</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 16 3"
+            >
+              <path
+                d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="flex flex-col items-center pb-10">
+          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+            Calendrier
+          </h5>
+          <span class="text-sm text-gray-500 dark:text-gray-400"></span>
+          <div class="flex mt-4 md:mt-6">
+            <a
+              href="#"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-gray-100 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            ></a>
+          </div>
+        </div>
+      </div>
+
       <div>
         <div class="p-4">
           <h2 class="text-blue-700 text-start"><b>Taches terminées</b></h2>
