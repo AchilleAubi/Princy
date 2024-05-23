@@ -416,7 +416,53 @@ function setPage(pageNumber: number) {
         </nav>
       </div>
     </div>
-    <div class="w-1/4 bg-white border border-gray-200 shadow"></div>
+    <div class="w-1/4 bg-white border border-gray-200 shadow">
+      <div
+        class="flex text-center items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+      >
+        <img
+          class="w-8 h-8 rounded-full"
+          src="../assets/images.png"
+          alt="user photo"
+        />
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900 dark:text-white"
+            >Bonnie Green</span
+          >
+          <span class="block text-sm text-gray-500 truncate dark:text-gray-400"
+            >name@flowbite.com</span
+          >
+        </div>
+      </div>
+      <div>
+        <div class="p-4">
+          <h2 class="text-blue-700 text-start"><b>Taches terminées</b></h2>
+          <ul class="p-4">
+            <li
+              v-for="(list, index) in todeList"
+              :key="index"
+              class="text-start"
+            >
+              <span
+                v-if="list['end-task'] === true"
+                class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-800 rounded-full"
+              >
+              </span>
+              <span
+                v-if="list['end-task'] === true"
+                class="text-muted small pt-1 fw-bold"
+                ><b> Devs - </b></span
+              >
+              <span
+                v-if="list['end-task'] === true"
+                class="text-info small pt-2 ps-1"
+                >{{ list["task"] }}</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
