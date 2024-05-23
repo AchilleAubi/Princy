@@ -313,7 +313,10 @@ function setPage(pageNumber: number) {
         </div>
         <div class="w-1/2">
           <h5 class="card-title">{{ company["task"] }}</h5>
-          <span><input type="radio" checked /></span>
+          <span
+            class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-800 rounded-full"
+          >
+          </span>
           <span class="text-muted small pt-1 fw-bold"><b> Devs - </b></span>
           <span class="text-info small pt-2 ps-1">{{ company["date"] }}</span>
         </div>
