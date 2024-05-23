@@ -35,7 +35,7 @@ onMounted(() => {
 const todeList = ref<any[]>([]);
 const tagsList = ref<any[]>([]);
 const currentPage = ref(1);
-const itemsPerPage = 8;
+const itemsPerPage = 9;
 const searchKey = ref("");
 
 async function getData() {
@@ -99,7 +99,86 @@ function setPage(pageNumber: number) {
 
 <template>
   <div class="flex">
-    <div class="w-1/4 bg-slate-100 border border-gray-200 shadow"></div>
+    <div class="w-1/4 bg-slate-100 border border-gray-200 shadow">
+      <div class="p-4">
+        <h2><b>To do vue Js</b></h2>
+        <form class="flex items-center max-w-sm mx-auto mt-4">
+          <label for="simple-search" class="sr-only">Search</label>
+          <div class="relative w-full">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
+            <input
+              v-model="searchKey"
+              type="text"
+              id="simple-search"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Search branch name..."
+              required
+            />
+          </div>
+        </form>
+      </div>
+      <div>
+        <div class="p-4">
+          <h2 class="text-blue-700 text-start"><b>Favoris</b></h2>
+          <ul class="p-4">
+            <li class="text-start">Mes tâches aujourd'hui</li>
+            <li class="text-start">
+              Important
+              <span
+                class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full"
+              >
+                1
+              </span>
+            </li>
+            <li class="text-start">Personnel</li>
+            <li class="text-start">Toutes les tâches</li>
+            <li class="text-start">Términés</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="p-4">
+          <h2 class="text-blue-700 text-start"><b>Tags</b></h2>
+          <ul class="p-4">
+            <li
+              v-for="(tag, index) in tagsList"
+              :key="index"
+              class="text-start"
+            >
+              <span
+                v-if="index % 2 === 0"
+                class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-800 rounded-full"
+              >
+              </span>
+              <span
+                v-if="index % 2 !== 0"
+                class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-yellow-400 rounded-full"
+              >
+              </span>
+              {{ tag["name"] }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="w-1/2 p-6 bg-white border border-gray-200 shadow">
       <div class="flex pl-4">
         <div class="w-1/2">
@@ -224,42 +303,48 @@ function setPage(pageNumber: number) {
           </div>
         </div>
       </div>
-      <input
-        type="text"
-        v-model="searchKey"
-        placeholder="Rechercher"
-        class="form-control"
-      />
-      <div class="flex w-full">
-        <div style="margin-top: 5%">
-          <div
-            v-for="company in filteredAndPaginatedCompanies.data"
-            :key="company['task']"
-          >
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-1 text-center card-title">
-                  <input type="checkbox" :checked="company['end-task']" />
-                </div>
-                <div class="col-md-10">
-                  <h5 class="card-title">{{ company["task"] }}</h5>
-                  <span><input type="radio" checked /></span>
-                  <span class="text-muted small pt-1 fw-bold"
-                    ><b> Devs - </b></span
-                  >
-                  <span class="text-info small pt-2 ps-1">{{
-                    company["date"]
-                  }}</span>
-                </div>
-                <div class="col-md-1 text-center card-title">
-                  <i v-if="company['important']" class="bi bi-star-fill"></i>
-                  <i v-if="!company['important']" class="bi bi-star"></i>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div
+        class="flex w-full p-4"
+        v-for="company in filteredAndPaginatedCompanies.data"
+        :key="company['task']"
+      >
+        <div class="w-1/4">
+          <input type="checkbox" :checked="company['end-task']" />
+        </div>
+        <div class="w-1/2">
+          <h5 class="card-title">{{ company["task"] }}</h5>
+          <span><input type="radio" checked /></span>
+          <span class="text-muted small pt-1 fw-bold"><b> Devs - </b></span>
+          <span class="text-info small pt-2 ps-1">{{ company["date"] }}</span>
+        </div>
+        <div class="w-1/4">
+          <i v-if="company['important']"
+            ><svg
+              class="w-4 h-4 text-yellow-300 me-1"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 22 20"
+            >
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+              /></svg
+          ></i>
+          <i v-if="!company['important']"
+            ><svg
+              class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 22 20"
+            >
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+              /></svg
+          ></i>
         </div>
       </div>
+      <br />
       <div class="flex">
         <nav aria-label="Page navigation example">
           <ul class="flex items-center -space-x-px h-8 text-sm">
